@@ -22,6 +22,7 @@ from lerobot.common.robot_devices.cameras.configs import (
     CameraConfig,
     IntelRealSenseCameraConfig,
     OpenCVCameraConfig,
+    OrbbecCameraConfig,
 )
 from lerobot.common.robot_devices.motors.configs import (
     DynamixelMotorsBusConfig,
@@ -443,7 +444,7 @@ class So101RobotConfig(ManipulatorRobotConfig):
     leader_arms: dict[str, MotorsBusConfig] = field(
         default_factory=lambda: {
             "main": FeetechMotorsBusConfig(
-                port="/dev/tty.usbmodem58760431091",
+                port="/dev/tty.usbmodem5A4B0465681",
                 motors={
                     # name: (index, model)
                     "shoulder_pan": [1, "sts3215"],
@@ -460,7 +461,7 @@ class So101RobotConfig(ManipulatorRobotConfig):
     follower_arms: dict[str, MotorsBusConfig] = field(
         default_factory=lambda: {
             "main": FeetechMotorsBusConfig(
-                port="/dev/tty.usbmodem585A0076891",
+                port="/dev/tty.usbmodem5A4B0466601",
                 motors={
                     # name: (index, model)
                     "shoulder_pan": [1, "sts3215"],
@@ -476,24 +477,24 @@ class So101RobotConfig(ManipulatorRobotConfig):
 
     cameras: dict[str, CameraConfig] = field(
         default_factory=lambda: {
-            "laptop": OpenCVCameraConfig(
-                camera_index=0,
-                fps=30,
-                width=640,
-                height=480,
-            ),
-            "phone": OpenCVCameraConfig(
-                camera_index=1,
-                fps=30,
-                width=640,
-                height=480,
-            ),
-            # "Orbbec": OrbbecCameraConfig(    # Configuration for Orbbec camera
-            #     fps=30,                     # Frame rate (30 FPS)
-            #     use_depth=True,             # Whether to use depth data
-            #     width=640,                  # Auto-adjusts resolution based on width. Must be either 640 or 1280 (untested)
-            #     hi_resolution_mode=False    # High-resolution mode (may degrade visualization quality but improves depth data resolution
+            # "laptop": OpenCVCameraConfig(
+            #     camera_index=0,
+            #     fps=30,
+            #     width=640,
+            #     height=480,
             # ),
+            # "phone": OpenCVCameraConfig(
+            #     camera_index=1,
+            #     fps=30,
+            #     width=640,
+            #     height=480,
+            # ),
+            "Orbbec": OrbbecCameraConfig(    # Configuration for Orbbec camera
+                fps=30,                     # Frame rate (30 FPS)
+                use_depth=True,             # Whether to use depth data
+                width=640,                  # Auto-adjusts resolution based on width. Must be either 640 or 1280 (untested)
+                Hi_resolution_mode=False    # High-resolution mode (may degrade visualization quality but improves depth data resolution
+            ),
         }
     )
 
